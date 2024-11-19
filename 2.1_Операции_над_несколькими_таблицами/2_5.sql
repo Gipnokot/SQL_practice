@@ -13,10 +13,11 @@ FROM (
 --ВАЖНО: задайте Alias-ы для вложенного запроса и столбца, который является результатом применения агрегирующей функции, иначе вложенный запрос не сработает.
 
 select count(*)
-from
-	(select customer_id, count (*) as cnt
-	from orders
-	group by customer_id
-	having count (*) > 10) as oders_count
+from (
+    select customer_id, count (*) as cnt
+    from orders
+    group by customer_id
+    having count (*) > 10
+) as oders_count
 
 -- Выведите товары, которые относятся к сategory_id =1. Используйте этот SQL-запрос как подзапрос для того, чтобы посчитать общую выручку по товарам, которые относятся к category_id = 1. Ответ округлите до целого числа.
