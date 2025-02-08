@@ -21,3 +21,8 @@ from (
 ) as oders_count
 
 -- Выведите товары, которые относятся к сategory_id =1. Используйте этот SQL-запрос как подзапрос для того, чтобы посчитать общую выручку по товарам, которые относятся к category_id = 1. Ответ округлите до целого числа.
+
+select p.category_id , sum(od.unit_price * od.quantity * (1-od.discount))
+from order_details od inner join products p on od.product_id = p.product_id
+where p.category_id = 1
+group by p.category_id
